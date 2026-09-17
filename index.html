@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>The Ezra Clinic – Email signature</title>
+<style>
+  :root { --olive:#4d5345; --ink:#1f211c; --muted:#6b6e66; --line:#dcddd8; --paper:#fff; --tint:#f3f4f1; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--tint); color:var(--ink); font:16px/1.55 Georgia, "Times New Roman", serif; }
+  main { max-width:760px; margin:0 auto; padding:48px 20px 64px; }
+  h1 { font-weight:normal; font-size:30px; line-height:1.2; margin:0 0 6px; color:var(--olive); }
+  .lede { margin:0 0 32px; color:var(--muted); }
+  .sheet { background:var(--paper); border:1px solid var(--line); padding:28px; overflow-x:auto; }
+  .actions { display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin:20px 0 8px; font-family:Arial, sans-serif; }
+  button { font:600 15px Arial, sans-serif; padding:11px 18px; border:1px solid var(--olive); background:var(--olive); color:#fff; cursor:pointer; }
+  button.secondary { background:transparent; color:var(--olive); }
+  button:focus-visible { outline:3px solid #9aa38c; outline-offset:2px; }
+  #status { font-size:14px; color:var(--olive); min-height:1.2em; }
+  #missing { display:none; margin:20px 0 0; padding:14px 16px; border-left:4px solid #b5651d; background:#fff7ef; font:14px/1.5 Arial, sans-serif; }
+  h2 { font-weight:normal; font-size:21px; color:var(--olive); margin:40px 0 8px; }
+  ol { padding-left:22px; margin:0; }
+  li { margin:6px 0; }
+  code { font-size:14px; background:#e8e9e4; padding:1px 5px; }
+  textarea { width:100%; height:140px; margin-top:12px; font:12px/1.4 Menlo, Consolas, monospace; display:none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Email signature for The Ezra Clinic</h1>
+  <p class="lede">Check the preview, copy it, then paste it into your email signature settings.</p>
+
+  <div class="sheet" id="preview"></div>
+
+  <div class="actions">
+    <button type="button" id="copySig">Copy signature</button>
+    <button type="button" class="secondary" id="copyCode">Copy HTML code</button>
+    <span id="status" role="status"></span>
+  </div>
+  <div id="missing"></div>
+  <textarea id="codeBox" readonly aria-label="Signature HTML code"></textarea>
+
+  <h2>Gmail</h2>
+  <ol>
+    <li>Click <strong>Copy signature</strong> above.</li>
+    <li>In Gmail, open Settings, then See all settings, then General, and scroll to Signature.</li>
+    <li>Create or select a signature, paste into the box, then click <strong>Save changes</strong> at the bottom of the page.</li>
+  </ol>
+
+  <h2>Outlook (web and new Outlook)</h2>
+  <ol>
+    <li>Click <strong>Copy signature</strong> above.</li>
+    <li>In Outlook, open Settings, then Mail (or Account), then Signatures.</li>
+    <li>Paste into the signature box, then click <strong>Save</strong>.</li>
+  </ol>
+</main>
+
+<script>
+  // ── Edit signature details here ─────────────────────────────
+  const D = {
+    name: "Dr. Daniel Ezra",
+    title: "Specialist Ophthalmic and Oculoplastic Consultant",
+    clinic: "The Ezra Clinic",
+    phone1: "033 0828 4347",
+    phone2: "033 0828 4347",
+    email: "daniel.ezra@my-company.com",
+    website: "www.danielezra.co.uk",
+    address: "152 Harley Street, W1G 7LH",
+    trustpilot: "https://uk.trustpilot.com/review/www.danielezra.co.uk",
+    facebook: "https://www.facebook.com/eyesbyezra",
+    instagram: "https://www.instagram.com/eyesbyezra/",
+    youtube: "https://www.youtube.com/channel/UCJvRRTA2Qdin4o6x0B-uDsQ",
+    logo: "logo.gif"   // use "logo-static.png" for a non-animated logo
+  };
+  // ────────────────────────────────────────────────────────────
+
+  const base = new URL("images/", location.href).href;
+  const img = (file, w, h, alt, style) =>
+    `<img src="${base}${file}" width="${w}"${h ? ` height="${h}"` : ""} alt="${alt}"${style ? ` style="${style}"` : ""}>`;
+  const icon = (file, alt) => img(file, 14, 14, alt, "vertical-align:middle");
+  const social = (file, alt, href) => `<a href="${href}">${img(file, 20, 20, alt)}</a>`;
+  const G = "color:#4d5345";
+
+  const html =
+`<table cellpadding="0" cellspacing="0" style="font:14px Arial,sans-serif;color:#000"><tr>` +
+`<td style="padding:0 15px" valign="top">${img(D.logo, 131, 131, D.clinic)}</td>` +
+`<td valign="top"><b style="font-size:16px">${D.name}</b><br><span style="${G}">${D.title}</span>` +
+`<hr style="border:0;border-top:1px solid #4d5345;margin:6px 0"><b>${D.clinic}</b><br>` +
+`${icon("icon-phone.png","Phone")} ${D.phone1}${D.phone2 && D.phone2 !== D.phone1 ? ` &nbsp; ${icon("icon-phone.png","Phone")} ${D.phone2}` : ""}<br>` +
+`${icon("icon-email.png","Email")} <a href="mailto:${D.email}" style="${G}">${D.email}</a> &nbsp; ` +
+`${icon("icon-web.png","Website")} <a href="https://${D.website}/" style="${G}">${D.website}</a><br>` +
+`${icon("icon-location.png","Address")} ${D.address}` +
+`<table cellpadding="0" cellspacing="0" width="422" style="margin-top:25px"><tr>` +
+`<td><a href="${D.trustpilot}" style="color:#00b67a"><b>Trustpilot EXCELLENT</b></a><br>${img("trustpilot.png", 79, 20, "Trustpilot rating")}</td>` +
+`<td align="right">${social("facebook.png","Facebook",D.facebook)}&nbsp;&nbsp;${social("instagram.png","Instagram",D.instagram)}&nbsp;&nbsp;${social("youtube.png","YouTube",D.youtube)}</td>` +
+`</tr></table></td></tr>` +
+`<tr><td colspan="2" style="padding-top:10px">${img("banner.png", 600, 0, "The Ezra Clinic awards and features")}</td></tr>` +
+`<tr><td colspan="2" width="600" style="padding-top:10px;font-size:11px;line-height:15px;color:#6e6e6e"><b style="${G}">Please note:</b> ` +
+`${D.clinic} is not an emergency service. If you are unwell or need urgent medical attention, please call <b>999</b>, contact NHS <b>111</b>, or go to your nearest A&amp;E department.</td></tr></table>`;
+
+  const preview = document.getElementById("preview");
+  const status = document.getElementById("status");
+  const missingBox = document.getElementById("missing");
+  const codeBox = document.getElementById("codeBox");
+  preview.innerHTML = html;
+  codeBox.value = html;
+
+  // Flag any image files that haven't been uploaded yet
+  const missing = new Set();
+  preview.querySelectorAll("img").forEach(el => {
+    el.addEventListener("error", () => {
+      missing.add(el.src.split("/").pop());
+      missingBox.style.display = "block";
+      missingBox.innerHTML = "<strong>These images are missing from the images folder:</strong> " +
+        [...missing].map(f => `<code>${f}</code>`).join(", ") +
+        ". Upload them to the repo, then refresh this page before copying.";
+    });
+  });
+
+  const say = msg => { status.textContent = msg; setTimeout(() => status.textContent = "", 4000); };
+
+  document.getElementById("copySig").addEventListener("click", async () => {
+    try {
+      // Copies the lean HTML directly, so the browser doesn't add extra styling code
+      await navigator.clipboard.write([new ClipboardItem({
+        "text/html": new Blob([html], { type: "text/html" }),
+        "text/plain": new Blob([preview.innerText], { type: "text/plain" })
+      })]);
+      say("Signature copied. Paste it into your email settings.");
+    } catch (e) {
+      const range = document.createRange();
+      range.selectNodeContents(preview);
+      const sel = getSelection(); sel.removeAllRanges(); sel.addRange(range);
+      document.execCommand("copy"); sel.removeAllRanges();
+      say("Signature copied.");
+    }
+  });
+
+  document.getElementById("copyCode").addEventListener("click", async () => {
+    codeBox.style.display = "block";
+    try { await navigator.clipboard.writeText(html); say("HTML code copied."); }
+    catch (e) { codeBox.select(); document.execCommand("copy"); say("HTML code copied."); }
+  });
+</script>
+</body>
+</html>

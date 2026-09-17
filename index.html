@@ -59,14 +59,15 @@
 <script>
   // ── Edit signature details here ─────────────────────────────
   const D = {
-    name: "Dr. Daniel Ezra",
-    title: "Specialist Ophthalmic and Oculoplastic Consultant",
+    name: "Fernando Bristot",
+    title: "Operations Manager",
     clinic: "The Ezra Clinic",
-    phone1: "033 0828 4347",
-    phone2: "033 0828 4347",
-    email: "daniel.ezra@my-company.com",
+    phone1: "020 7127 8184",
+    phone2: "",
+    email: "operations@ezraclinic.co.uk",
     website: "www.danielezra.co.uk",
     address: "152 Harley Street, W1G 7LH",
+    map: "https://maps.google.com/?q=152+Harley+Street,+London+W1G+7LH",
     trustpilot: "https://uk.trustpilot.com/review/www.danielezra.co.uk",
     facebook: "https://www.facebook.com/eyesbyezra",
     instagram: "https://www.instagram.com/eyesbyezra/",
@@ -90,7 +91,7 @@
 `${icon("icon-phone.png","Phone")} ${D.phone1}${D.phone2 && D.phone2 !== D.phone1 ? ` &nbsp; ${icon("icon-phone.png","Phone")} ${D.phone2}` : ""}<br>` +
 `${icon("icon-email.png","Email")} <a href="mailto:${D.email}" style="${G}">${D.email}</a> &nbsp; ` +
 `${icon("icon-web.png","Website")} <a href="https://${D.website}/" style="${G}">${D.website}</a><br>` +
-`${icon("icon-location.png","Address")} ${D.address}` +
+`${icon("icon-location.png","Address")} <a href="${D.map}" style="${G}">${D.address}</a>` +
 `<table cellpadding="0" cellspacing="0" width="422" style="margin-top:25px"><tr>` +
 `<td><a href="${D.trustpilot}" style="color:#00b67a"><b>Trustpilot EXCELLENT</b></a><br>${img("trustpilot.png", 79, 20, "Trustpilot rating")}</td>` +
 `<td align="right">${social("facebook.png","Facebook",D.facebook)}&nbsp;&nbsp;${social("instagram.png","Instagram",D.instagram)}&nbsp;&nbsp;${social("youtube.png","YouTube",D.youtube)}</td>` +
@@ -145,3 +146,4 @@
 </script>
 </body>
 </html>
+
